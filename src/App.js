@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 
-// Material UI components.
+// Material UI.
 import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
 import Paper from 'material-ui/Paper';
 import IconList from 'material-ui/svg-icons/action/list';
