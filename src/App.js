@@ -1,29 +1,20 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
-import FontIcon from 'material-ui/FontIcon';
 import Paper from 'material-ui/Paper';
 import IconList from 'material-ui/svg-icons/action/list';
 import IconFavorite from 'material-ui/svg-icons/action/favorite';
 import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
 
 // React Router.
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+
+// Tabbed Pages
+import List from './List.js';
 
 const listIcon = <IconList />;
 const favoriteIcon = <IconFavorite />;
 const mapIcon = <IconLocationOn />;
-
-const List = () => (
-  <div>
-    <h2>List</h2>
-  </div>
-)
 
 const Favorites = () => (
   <div>
@@ -36,7 +27,6 @@ const Map = () => (
     <h2>Map</h2>
   </div>
 )
-
 
 class App extends Component {
     state = {
