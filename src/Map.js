@@ -4,9 +4,8 @@ import React, { Component } from 'react';
 import Paper from 'material-ui/Paper';
 import AppBar from 'material-ui/AppBar';
 
-// React Google Maps.
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
-import { compose, withProps } from "recompose"
+// Google Map React.
+import GoogleMapReact from 'google-map-react';
 
 const AppBarTop = () => (
   <AppBar
@@ -15,46 +14,40 @@ const AppBarTop = () => (
   />
 );
 
-const FountainMap = compose(
-  withProps({
-    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",
-    loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{
-      // https://github.com/tomchentw/react-google-maps/issues/385
-      height: `100%`,
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      justifyContent: 'flex-end',
-      alignItems: 'center',
-    }} />,
-    mapElement: <div style={{ height: `100%` }} />
-  }),
-  withScriptjs,
-  withGoogleMap
-  ) ((props) =>
-    <GoogleMap
-      defaultZoom={8}
-      defaultCenter={{ lat: -34.397, lng: 150.644 }}
-    >
-
-    {props.isMarkerShown &&
-      <Marker
-        position={{ lat: -34.397, lng: 150.644 }}
-      />
-    }
-    </GoogleMap>
+const AnyReactComponent = ({ text }) => (
+  <div style={{
+    position: 'relative', color: 'white', background: 'red',
+    height: 40, width: 60, top: -20, left: -30,
+  }}>
+    {text}
+  </div>
 );
 
 class Map extends Component {
+  static defaultProps = {
+    center: {lat: 59.95, lng: 30.33},
+    zoom: 11
+  };
+
   render() {
     return (
       <div>
         <AppBarTop />
 
-        <FountainMap isMarkerShown />
+        <GoogleMapReact
+          defaultCenter={this.props.center}
+          defaultZoom={this.props.zoom}
+          style={{
+            width: `100%`,
+            height: `calc(100vh - 100px)`
+          }}
+        >
+          <AnyReactComponent
+            lat={59.955413}
+            lng={30.337844}
+            text={'Hello!'}
+          />
+        </GoogleMapReact>
       </div>
     );
   }
