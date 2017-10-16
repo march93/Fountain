@@ -2,32 +2,46 @@ import React, { Component } from 'react';
 import './List.css';
 import Paper from 'material-ui/Paper';
 import AppBar from 'material-ui/AppBar';
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import IconLocalBar from 'material-ui/svg-icons/maps/local-bar';
+import _ from 'lodash';
+
+const iconLocalBar = <IconLocalBar />;
+const fountainsJson = require('./drinking_fountains.json');
+const fountains = fountainsJson.features;
 
 const AppBarTop = () => (
-    <AppBar
-        title = {<span>All Fountains in Vancouver</span>}
+    <AppBar className="appBarTop"
+        title = {<span>Fountains Around Vancouver</span>}
         showMenuIconButton = {false}
     />
-  );
-
-const Cards = () => (
-  <div>
-    <h2>Cards</h2>
-  </div>
-)
+);
 
 class List extends Component {
     state = {
         selectedIndex: 0,
+        numCards: 0
     };
 
-    select = (index) => this.setState({selectedIndex: index});
-
     render() {
+        const children = [];
+        _.each(fountains, function(fountain, index) {
+            children.push(
+                <Card key={index} className="card">
+                    <CardHeader
+                        title={fountain.properties.NAME}
+                        subtitle={fountain.properties.IN_OPERATION}
+                        avatar={iconLocalBar}
+                    />
+                </Card>
+            );
+        });
         return (
-            <div>
+            <div className="cardParent">
                 <AppBarTop />
-                <Cards />
+                <div className="cardWrap">
+                    {children}
+                </div>
             </div>
         );
     }

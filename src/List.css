@@ -1,0 +1,18 @@
+.cardParent {
+    height: calc(100vh - 56px);
+}
+
+.card {
+    width: 85%;
+    margin: 20px auto;
+}
+
+.appBarTop {
+    position: fixed !important;
+    top: 0;
+}
+
+.cardWrap {
+    padding-top: 70px;
+    padding-bottom: 56px;
+}
