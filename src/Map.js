@@ -29,14 +29,25 @@ class Map extends Component {
   render() {
     return (
       <div>
-      <AppBarTop />
-      <FountainMap
-        isMarkerShown
-        googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
-        loadingElement={<div style={{ height: `100%` }} />}
-        containerElement={<div style={{ height: `400px` }} />}
-        mapElement={<div style={{ height: `100%` }} />}
-      />
+        <AppBarTop />
+
+        <FountainMap
+          isMarkerShown
+          googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+          loadingElement={<div style={{ height: `100%` }} />}
+          containerElement={<div style={{
+            // https://github.com/tomchentw/react-google-maps/issues/385
+            height: `100%`,
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            justifyContent: 'flex-end',
+            alignItems: 'center',
+          }} />}
+          mapElement={<div style={{ height: `100%` }} />}
+        />
       </div>
     );
   }
