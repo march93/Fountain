@@ -8,9 +8,35 @@ import IconList from 'material-ui/svg-icons/action/list';
 import IconFavorite from 'material-ui/svg-icons/action/favorite';
 import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
 
+// React Router.
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
+
 const listIcon = <IconList />;
 const favoriteIcon = <IconFavorite />;
 const mapIcon = <IconLocationOn />;
+
+const List = () => (
+  <div>
+    <h2>List</h2>
+  </div>
+)
+
+const Favorites = () => (
+  <div>
+    <h2>Favorites</h2>
+  </div>
+)
+
+const Map = () => (
+  <div>
+    <h2>Map</h2>
+  </div>
+)
+
 
 class App extends Component {
     state = {
@@ -21,25 +47,41 @@ class App extends Component {
 
     render() {
         return (
-        <Paper zDepth={1} className="paper">
-            <BottomNavigation selectedIndex={this.state.selectedIndex}>
-            <BottomNavigationItem
-                label="List"
-                icon={listIcon}
-                onClick={() => this.select(0)}
-            />
-            <BottomNavigationItem
-                label="Favorites"
-                icon={favoriteIcon}
-                onClick={() => this.select(1)}
-            />
-            <BottomNavigationItem
-                label="Map"
-                icon={mapIcon}
-                onClick={() => this.select(2)}
-            />
-            </BottomNavigation>
-        </Paper>
+        <Router>
+          <div>
+            <Route path="/list" component={List}/>
+            <Route path="/Favorites" component={Favorites}/>
+            <Route path="/Map" component={Map}/>
+
+            <Paper zDepth={1} className="paper">
+              <BottomNavigation selectedIndex={this.state.selectedIndex}>
+                <Link to="/list">
+                  <BottomNavigationItem
+                    label="List"
+                    icon={listIcon}
+                    onClick={() => this.select(0)}
+                  />
+                </Link>
+
+                <Link to="/favorites">
+                  <BottomNavigationItem
+                      label="Favorites"
+                      icon={favoriteIcon}
+                      onClick={() => this.select(1)}
+                  />
+                </Link>
+
+                <Link to="/map">
+                  <BottomNavigationItem
+                      label="Map"
+                      icon={mapIcon}
+                      onClick={() => this.select(2)}
+                  />
+                </Link>
+              </BottomNavigation>
+            </Paper>
+          </div>
+        </Router>
         );
     }
 }
