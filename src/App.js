@@ -12,6 +12,9 @@ import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 // Tabbed Pages
 import List from './List.js';
 
+const fountainsJson = require('./drinking_fountains.json');
+const fountains = fountainsJson.features
+
 const listIcon = <IconList />;
 const favoriteIcon = <IconFavorite />;
 const mapIcon = <IconLocationOn />;
@@ -36,7 +39,9 @@ class App extends Component {
     select = (index) => this.setState({selectedIndex: index});
 
     render() {
-        return (
+      console.log(fountains);
+
+      return (
         <Router>
           <div>
             <Route exact path="/" render={() => (
