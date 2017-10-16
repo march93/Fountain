@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+
+// Material UI components.
 import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
 import Paper from 'material-ui/Paper';
 import IconList from 'material-ui/svg-icons/action/list';
@@ -11,10 +13,13 @@ import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 // Tabbed Pages
 import List from './List.js';
+import Map from './Map.js';
 
+// Raw data.
 const fountainsJson = require('./drinking_fountains.json');
 const fountains = fountainsJson.features
 
+// Icons.
 const listIcon = <IconList />;
 const favoriteIcon = <IconFavorite />;
 const mapIcon = <IconLocationOn />;
@@ -22,12 +27,6 @@ const mapIcon = <IconLocationOn />;
 const Favorites = () => (
   <div>
     <h2>Favorites</h2>
-  </div>
-)
-
-const Map = () => (
-  <div>
-    <h2>Map</h2>
   </div>
 )
 
@@ -39,8 +38,6 @@ class App extends Component {
     select = (index) => this.setState({selectedIndex: index});
 
     render() {
-      console.log(fountains);
-
       return (
         <Router>
           <div>
