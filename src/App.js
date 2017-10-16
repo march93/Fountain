@@ -49,6 +49,9 @@ class App extends Component {
         return (
         <Router>
           <div>
+            <Route exact path="/" render={() => (
+              <h1>Welcome!</h1>
+            )}/>
             <Route path="/list" component={List}/>
             <Route path="/Favorites" component={Favorites}/>
             <Route path="/Map" component={Map}/>
